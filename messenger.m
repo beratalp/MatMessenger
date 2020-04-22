@@ -13,7 +13,7 @@ if ~isfile(CREDENTIALS)
     username = input('MQTT Username: ', 's');
     pass = input('MQTT Password: ', 's');
     url = strcat('tcp://', url);
-    writematrix([url username pass], CREDENTIALS, 'Delimiter', 'comma');
+    writecell({url, username, pass}, CREDENTIALS, 'Delimiter','comma');
     if isempty(username)
         isServerAuthed = false;
     end
