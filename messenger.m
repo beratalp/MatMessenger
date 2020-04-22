@@ -5,7 +5,6 @@ close all;
 CREDENTIALS = 'credentials.csv';
 isServerAuthed = true;
 clientID = randi(100000);
-global message
 
 % check for credentials
 if ~isfile(CREDENTIALS)
@@ -50,4 +49,9 @@ subscription = subscribe(connection, 'msg', 'Callback', @(topic, msg) dispMessag
 while (message ~= 'q')
     send(message, connection);
     message = input('Message to send (q to exit): ', 's');
+    unsubscribe(subscription);
+    subscription = subscribe(connection, 'msg', 'Callback', @(topic, msg) dispMessage(topic, msg, message));
 end
+
+clear
+clc
