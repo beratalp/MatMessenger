@@ -18,11 +18,11 @@ if ~isfile(CREDENTIALS)
         isServerAuthed = false;
     end
 else
-    cred_matrix = readmatrix(CREDENTIALS, 'FileType', 'text', 'OutputType','string');
-    url = cred_matrix(1);
+    cred_matrix = readcell(CREDENTIALS);
+    url = cred_matrix{1};
     try
-        username = cred_matrix(2);
-        pass = cred_matrix(3);
+        username = cred_matrix{2};
+        pass = cred_matrix{3};
     catch
         isServerAuthed = false;
     end
