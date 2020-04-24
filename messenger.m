@@ -43,11 +43,11 @@ end
 message = input('Message to send (q to exit): ', 's');
 
 subscription = subscribe(connection, 'msg', 'Callback', @(topic, msg) dispMessage(topic, msg, message));
-
+send(message, connection);
 
 
 while (message ~= 'q')
-    send(message, connection);
+    send(messageBuilder(message, username), connection);
     message = input('Message to send (q to exit): ', 's');
     unsubscribe(subscription);
     subscription = subscribe(connection, 'msg', 'Callback', @(topic, msg) dispMessage(topic, msg, message));
