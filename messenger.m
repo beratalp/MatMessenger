@@ -39,11 +39,10 @@ catch ME
     return
 end
 
+subscription = subscribe(connection, 'msg', 'Callback', @(topic, msg) dispMessage(topic, msg, ''));  
+
 message = input('Message to send (q to exit): ', 's');
 message = messageBuilder(message, username);
-
-subscription = subscribe(connection, 'msg', 'Callback', @(topic, msg) dispMessage(topic, msg, message));        
-
 
 unsubscribe(subscription);
 
